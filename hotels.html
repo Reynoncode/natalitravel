@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otel Axtar — Natali Travel</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-icon"></div>
+    <div class="logo-text"><span>Natali</span><span>TRAVEL</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Səhifə</a></li>
+    <li><a href="flights.html">Uçuşlar</a></li>
+    <li><a href="hotels.html" class="active">Otellər</a></li>
+    <li><a href="tours.html">Turlar</a></li>
+    <li><a href="services.html">Xidmətlər</a></li>
+    <li><a href="contact.html" class="nav-cta">Əlaqə</a></li>
+  </ul>
+  <button class="nav-hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-nav">
+  <a href="index.html">Ana Səhifə</a>
+  <a href="flights.html">Uçuşlar</a>
+  <a href="hotels.html">Otellər</a>
+  <a href="tours.html">Turlar</a>
+  <a href="services.html">Xidmətlər</a>
+  <a href="contact.html">Əlaqə</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <h1>🏨 Otel Axtar</h1>
+  <p>300,000+ oteli müqayisə edin, ən yaxşı qiymətlə rezerv edin</p>
+</div>
+
+<!-- SEARCH FORM -->
+<div class="search-form-section">
+  <div class="search-form-inner">
+    <div class="form-row" style="grid-template-columns: 2fr 160px 160px 120px 120px">
+      <div class="search-field">
+        <label>Şəhər / Otel / Bölgə</label>
+        <input type="text" id="h-dest" placeholder="İstanbul, Dubai, Antalya...">
+      </div>
+      <div class="search-field">
+        <label>Giriş tarixi</label>
+        <input type="date" id="h-cin">
+      </div>
+      <div class="search-field">
+        <label>Çıxış tarixi</label>
+        <input type="date" id="h-cout" data-default="checkout">
+      </div>
+      <div class="search-field">
+        <label>Qonaq</label>
+        <select id="h-guests">
+          <option value="1">1 nəfər</option>
+          <option value="2">2 nəfər</option>
+          <option value="3">3 nəfər</option>
+          <option value="4">4 nəfər</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Otaq</label>
+        <select id="h-rooms">
+          <option>1 otaq</option>
+          <option>2 otaq</option>
+          <option>3 otaq</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>&nbsp;</label>
+        <button class="search-btn" onclick="searchHotels()">🔍 Axtar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPULAR DESTINATIONS -->
+<div style="padding: 20px 5vw; background: white; border-bottom: 1px solid rgba(43,189,197,0.1);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    <span style="font-size:12px;color:var(--muted);font-weight:600">Populyar:</span>
+    <button class="filter-btn" onclick="quickHotelSearch('İstanbul')">🕌 İstanbul</button>
+    <button class="filter-btn" onclick="quickHotelSearch('Dubai')">🏙️ Dubai</button>
+    <button class="filter-btn" onclick="quickHotelSearch('Antalya')">🏖️ Antalya</button>
+    <button class="filter-btn" onclick="quickHotelSearch('Paris')">🗼 Paris</button>
+    <button class="filter-btn" onclick="quickHotelSearch('Moskva')">🏛️ Moskva</button>
+    <button class="filter-btn" onclick="quickHotelSearch('Tbilisi')">🇬🇪 Tbilisi</button>
+    <button class="filter-btn" onclick="quickHotelSearch('Sharm el-Sheikh')">🐠 Şarm əl-Şeyx</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<section class="results-section">
+  <div class="results-inner">
+    <div id="results-header" style="display:none;margin-bottom:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+        <div>
+          <h3 id="results-title" style="font-size:18px;font-weight:700"></h3>
+          <p id="results-count" style="font-size:13px;color:var(--muted)"></p>
+        </div>
+        <div class="filter-bar" style="margin-bottom:0">
+          <button class="filter-btn active" onclick="filterHotels(0, this)">Hamısı</button>
+          <button class="filter-btn" onclick="filterHotels(3, this)">3★</button>
+          <button class="filter-btn" onclick="filterHotels(4, this)">4★</button>
+          <button class="filter-btn" onclick="filterHotels(5, this)">5★</button>
+          <div class="sort-bar">
+            <label>Sırala:</label>
+            <select onchange="sortHotels(this.value)">
+              <option value="price">Qiymət ↑</option>
+              <option value="stars">Ulduz ↓</option>
+              <option value="rating">Reytinq ↓</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="results-loading" class="empty-state" style="display:none">
+      <div class="icon">🔍</div>
+      <h3>Otellər axtarılır<span class="loading-dots"></span></h3>
+      <p>Lütfən gözləyin</p>
+    </div>
+
+    <div id="hotels-results"></div>
+
+    <div class="empty-state" id="initial-state">
+      <div class="icon">🏨</div>
+      <h3>Otel Axtarın</h3>
+      <p>Gedəcəyiniz şəhər, tarixlər və qonaq sayını daxil edib "Axtar" düyməsini basın</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-icon"></div><div class="logo-text"><span>Natali</span><span>TRAVEL</span></div></div>
+      <p>2012-ci ildən Azərbaycan turistlərinə xidmət edirik.</p>
+    </div>
+    <div><h4>Xidmətlər</h4><ul class="footer-links">
+      <li><a href="flights.html">Aviabilet</a></li>
+      <li><a href="hotels.html">Otel</a></li>
+      <li><a href="tours.html">Turlar</a></li>
+      <li><a href="services.html">Viza & Sığorta</a></li>
+    </ul></div>
+    <div><h4>Şirkət</h4><ul class="footer-links">
+      <li><a href="contact.html">Haqqımızda</a></li>
+      <li><a href="contact.html">Əlaqə</a></li>
+    </ul></div>
+    <div><h4>Əlaqə</h4><div class="footer-contact">
+      <p>📞 +994 12 555 77 77</p>
+      <p>✉️ info@natalitravel.az</p>
+    </div></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Natali Travel. Bütün hüquqlar qorunur.</p>
+    <p>IATA · ATAB · Lisenziyalı</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+let allHotels = [];
+
+function quickHotelSearch(dest) {
+  document.getElementById('h-dest').value = dest;
+  searchHotels();
+}
+
+function searchHotels() {
+  const dest = document.getElementById('h-dest').value.trim();
+  if (!dest) { alert('Şəhər və ya bölgə daxil edin'); return; }
+
+  document.getElementById('initial-state').style.display = 'none';
+  document.getElementById('results-loading').style.display = 'block';
+  document.getElementById('results-header').style.display = 'none';
+  document.getElementById('hotels-results').innerHTML = '';
+
+  setTimeout(() => {
+    const cin = document.getElementById('h-cin').value;
+    const cout = document.getElementById('h-cout').value;
+    const guests = +document.getElementById('h-guests').value;
+    allHotels = generateHotels(dest, cin, cout, guests);
+
+    document.getElementById('results-loading').style.display = 'none';
+    document.getElementById('results-header').style.display = 'block';
+    document.getElementById('results-title').textContent = `${dest} — Otellər`;
+    document.getElementById('results-count').textContent = `${allHotels.length} otel tapıldı`;
+
+    renderHotels(allHotels, 'hotels-results');
+  }, 1000);
+}
+
+function filterHotels(stars, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = stars === 0 ? [...allHotels] : allHotels.filter(h => h.stars === stars);
+  renderHotels(filtered, 'hotels-results');
+}
+
+function sortHotels(by) {
+  const sorted = [...allHotels].sort((a, b) => {
+    if (by === 'price') return a.pricePerNight - b.pricePerNight;
+    if (by === 'stars') return b.stars - a.stars;
+    if (by === 'rating') return b.rating - a.rating;
+    return 0;
+  });
+  renderHotels(sorted, 'hotels-results');
+}
+
+// URL params
+const params = new URLSearchParams(location.search);
+if (params.get('dest')) document.getElementById('h-dest').value = params.get('dest');
+if (params.get('cin')) document.getElementById('h-cin').value = params.get('cin');
+if (params.get('cout')) document.getElementById('h-cout').value = params.get('cout');
+if (params.get('guests')) document.getElementById('h-guests').value = params.get('guests');
+
+if (params.get('dest')) {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(searchHotels, 300));
+}
+</script>
+</body>
+</html>
