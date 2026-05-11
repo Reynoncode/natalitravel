@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tur Paketləri — Natali Travel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .tour-full-card {
+      background: white; border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); border: 1.5px solid rgba(43,189,197,0.1);
+      transition: all .3s; display: flex; flex-direction: column;
+    }
+    .tour-full-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--primary); }
+    .tour-full-img {
+      height: 220px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 72px;
+    }
+    .tour-full-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .tour-full-body h3 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+    .tour-full-body .desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; flex: 1; }
+    .includes { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .incl-tag {
+      background: var(--primary-light); color: var(--primary);
+      font-size: 11px; font-weight: 600; border-radius: 50px;
+      padding: 4px 10px;
+    }
+    .tour-foot {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid rgba(43,189,197,0.12);
+    }
+    .price-block .from { font-size: 11px; color: var(--muted); }
+    .price-block .amount { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--primary); }
+    .price-block .per { font-size: 11px; color: var(--muted); }
+
+    .tours-filters {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px;
+    }
+
+    .dest-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+
+    .promo-banner {
+      background: linear-gradient(135deg, var(--accent), #e67e22);
+      border-radius: var(--radius); padding: 32px; color: white;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .promo-banner h3 { font-size: 22px; margin-bottom: 6px; }
+    .promo-banner p { opacity: .85; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-icon"></div>
+    <div class="logo-text"><span>Natali</span><span>TRAVEL</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Səhifə</a></li>
+    <li><a href="flights.html">Uçuşlar</a></li>
+    <li><a href="hotels.html">Otellər</a></li>
+    <li><a href="tours.html" class="active">Turlar</a></li>
+    <li><a href="services.html">Xidmətlər</a></li>
+    <li><a href="contact.html" class="nav-cta">Əlaqə</a></li>
+  </ul>
+  <button class="nav-hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-nav">
+  <a href="index.html">Ana Səhifə</a>
+  <a href="flights.html">Uçuşlar</a>
+  <a href="hotels.html">Otellər</a>
+  <a href="tours.html">Turlar</a>
+  <a href="services.html">Xidmətlər</a>
+  <a href="contact.html">Əlaqə</a>
+</div>
+
+<div class="page-hero">
+  <h1>🌍 Tur Paketləri</h1>
+  <p>Uçuş + Otel + Transfer — hamısı daxil paketlərlə stresssiz səyahət edin</p>
+</div>
+
+<!-- QUICK SEARCH -->
+<div class="search-form-section">
+  <div class="search-form-inner">
+    <div class="form-row" style="grid-template-columns: 2fr 160px 140px 120px">
+      <div class="search-field">
+        <label>Getmək istədiyiniz yer</label>
+        <input type="text" id="t-dest" placeholder="İstanbul, Dubai, Antalya, Avropa...">
+      </div>
+      <div class="search-field">
+        <label>Tarix</label>
+        <input type="date" id="t-date">
+      </div>
+      <div class="search-field">
+        <label>Nəfər</label>
+        <select>
+          <option>1 nəfər</option>
+          <option>2 nəfər</option>
+          <option>Ailə (4)</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>&nbsp;</label>
+        <button class="search-btn" onclick="filterTours()">🔍 Axtar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section" style="padding-top: 40px;">
+  <div class="section-inner">
+
+    <!-- PROMO BANNER -->
+    <div class="promo-banner">
+      <div>
+        <h3>🏖️ Yay Sezonu Turları — 20% Endirim!</h3>
+        <p>İyun–Avqust arası Antalya, Marmaris, Bodrum paketlərində xüsusi endirimlər mövcuddur</p>
+      </div>
+      <a href="contact.html" class="btn-primary" style="background:white;color:var(--accent);white-space:nowrap">Təfərrüat →</a>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="tours-filters">
+      <button class="filter-btn active" onclick="setFilter('all', this)">Hamısı</button>
+      <button class="filter-btn" onclick="setFilter('turkey', this)">🇹🇷 Türkiyə</button>
+      <button class="filter-btn" onclick="setFilter('europe', this)">🌍 Avropa</button>
+      <button class="filter-btn" onclick="setFilter('uae', this)">🇦🇪 BAƏ</button>
+      <button class="filter-btn" onclick="setFilter('egypt', this)">🇪🇬 Misir</button>
+      <button class="filter-btn" onclick="setFilter('asia', this)">🌏 Asiya</button>
+      <button class="filter-btn" onclick="setFilter('honeymoon', this)">💑 Bal Ayı</button>
+      <div class="sort-bar" style="margin-left:auto">
+        <label>Sırala:</label>
+        <select onchange="sortTours(this.value)">
+          <option value="popular">Populyarlıq</option>
+          <option value="price_asc">Qiymət ↑</option>
+          <option value="price_desc">Qiymət ↓</option>
+          <option value="duration">Müddət</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TOUR GRID -->
+    <div id="tours-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px"></div>
+
+  </div>
+</section>
+
+<!-- CUSTOM TOUR CTA -->
+<section style="background:var(--light);padding:60px 5vw;text-align:center">
+  <div style="max-width:600px;margin:0 auto">
+    <p class="section-label">Xüsusi Paket</p>
+    <h2 class="section-title">Öz Turunuzu <span>Dizayn Edin</span></h2>
+    <p class="section-sub mt-8" style="margin: 0 auto 28px">Standart paketlər uyğun deyil? Mütəxəssislərimiz sizin üçün şəxsi tur proqramı hazırlasın.</p>
+    <a href="contact.html" class="btn-primary">Pulsuz Konsultasiya Al →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-icon"></div><div class="logo-text"><span>Natali</span><span>TRAVEL</span></div></div>
+      <p>2012-ci ildən Azərbaycan turistlərinə xidmət edirik.</p>
+    </div>
+    <div><h4>Xidmətlər</h4><ul class="footer-links">
+      <li><a href="flights.html">Aviabilet</a></li>
+      <li><a href="hotels.html">Otel</a></li>
+      <li><a href="tours.html">Turlar</a></li>
+      <li><a href="services.html">Viza & Sığorta</a></li>
+    </ul></div>
+    <div><h4>Şirkət</h4><ul class="footer-links">
+      <li><a href="contact.html">Haqqımızda</a></li>
+      <li><a href="contact.html">Əlaqə</a></li>
+    </ul></div>
+    <div><h4>Əlaqə</h4><div class="footer-contact">
+      <p>📞 +994 12 555 77 77</p>
+      <p>✉️ info@natalitravel.az</p>
+    </div></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Natali Travel. Bütün hüquqlar qorunur.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const TOURS = [
+  { id:1, name:'İstanbul Turu', dest:'İstanbul, Türkiyə', category:'turkey', emoji:'🕌', nights:7, price:349, badge:'Ən Çox Satılan', color:'#c0392b,#e74c3c', includes:['Uçuş','Otel (4★)','Transfer','Gəzinti'], desc:'Əski şəhərin möhtəşəm tarixi, Boğaz kruizi, qədim bazarlar və ləzzətli mətbəx.', popular:10 },
+  { id:2, name:'Antalya All-Inclusive', dest:'Antalya, Türkiyə', category:'turkey', emoji:'🏖️', nights:7, price:449, badge:'Yay Xüsusi', color:'#1abc9c,#16a085', includes:['Uçuş','5★ Otel','All Inclusive','Animasiya'], desc:'Türkiyənin ən gözəl sahillərində stresssiz tətil. Bütün xərclər otelə daxildir.', popular:9 },
+  { id:3, name:'Dubai Paketi', dest:'Dubai, BAƏ', category:'uae', emoji:'🏙️', nights:5, price:599, badge:'Premium', color:'#e67e22,#d35400', includes:['Uçuş','5★ Otel','Transfer','Şəhər turu'], desc:'Dünyanın ən müasir şəhərinin möhtəşəm göylərini kəşf edin. Burj Khalifa, Dubai Mall.', popular:8 },
+  { id:4, name:'Paris & Avropa Turu', dest:'Paris, Fransa', category:'europe', emoji:'🗼', nights:8, price:799, badge:'Məşhur', color:'#2980b9,#3498db', includes:['Uçuş','Otel (4★)','Transfer','Turrist sertifikatı'], desc:'Eiffel qülləsi, Luvr muzeyi, Monmartr — Paris\'in romantikası sizi məftun edəcək.', popular:7 },
+  { id:5, name:'Misir & Şarm Turu', dest:'Şarm əl-Şeyx, Misir', category:'egypt', emoji:'🐠', nights:7, price:399, badge:'Sərfəli', color:'#f39c12,#e67e22', includes:['Uçuş','Otel (5★)','All Inclusive','Dalış turu'], desc:'Qırmızı dənizin şəffaf suları, mərcan rifləri, piramidalar — unudulmaz bir macəra.', popular:8 },
+  { id:6, name:'Bali Turu', dest:'Bali, İndoneziya', category:'asia', emoji:'🌴', nights:10, price:999, badge:'Ekzotik', color:'#27ae60,#229954', includes:['Uçuş','Otel (4★)','Transfer','Ekskursiyalar'], desc:'Tropik cənnət: manqrov meşələri, pirinç tarlaları, hindu məbədləri, sahillər.', popular:6 },
+  { id:7, name:'Bal Ayı — Maldiv', dest:'Maldiv Adaları', category:'honeymoon', emoji:'💑', nights:7, price:1799, badge:'Bal Ayı', color:'#8e44ad,#9b59b6', includes:['Uçuş','Su üstü villa','Transfer','SPA'], desc:'Şəffaf dəniz, su üstü villalar, iki nəfərlik gün batımı — mükəmməl bal ayı.', popular:9 },
+  { id:8, name:'Roma & İtaliya Turu', dest:'Roma, İtaliya', category:'europe', emoji:'🏛️', nights:7, price:649, badge:'Kültür Turu', color:'#e74c3c,#c0392b', includes:['Uçuş','Otel (4★)','Transfer','Bələdçi'], desc:'Kolezyum, Vatikan, Trevi fəvvarəsi, Florensiya incəsənəti — tarixi dərinliyə səyahət.', popular:7 },
+  { id:9, name:'Bodrum Turu', dest:'Bodrum, Türkiyə', category:'turkey', emoji:'⛵', nights:5, price:299, badge:'Həftəsonu', color:'#3498db,#2980b9', includes:['Uçuş','Otel (4★)','Transfer'], desc:'Ege\'nin inci şəhərini kəşf edin — marina, qala, plajlar və taze dəniz məhsulları.', popular:6 },
+  { id:10, name:'Abu Dabi Paketi', dest:'Abu Dabi, BAƏ', category:'uae', emoji:'🕍', nights:5, price:549, badge:'Yeni', color:'#16a085,#1abc9c', includes:['Uçuş','Otel (5★)','Şəhər turu','Ferrari dünyası'], desc:'Şeyx Zayid məscidi, Formula-1 pisti, ərəb mədəniyyəti — möhtəşəm kontrast.', popular:5 },
+  { id:11, name:'Tailand Turu', dest:'Bankok & Phuket', category:'asia', emoji:'🏯', nights:10, price:849, badge:'Ekzotik', color:'#8e44ad,#9b59b6', includes:['Uçuş','Otel (4★)','Transfer','Ekskursiyalar'], desc:'Qızıl məbədlər, üzən bazarlar, Andaman dənizinin sahilləri — Cənub-Şərqi Asiyanın ecazı.', popular:7 },
+  { id:12, name:'Bal Ayı — Paris', dest:'Paris, Fransa', category:'honeymoon', emoji:'💕', nights:5, price:899, badge:'Romantik', color:'#e84393,#c0392b', includes:['Uçuş','Butik otel','Transfer','Şam yeməyi'], desc:'Sevgililər şəhərinin romantikası: Eiffel qülləsi gecə işıqları, Sein çayı kruizi.', popular:8 },
+];
+
+let currentFilter = 'all';
+let allTourData = [...TOURS];
+
+function renderToursGrid(tours) {
+  const grid = document.getElementById('tours-grid');
+  grid.innerHTML = tours.map(t => `
+    <div class="tour-full-card fade-in" data-category="${t.category}">
+      <div class="tour-full-img" style="background:linear-gradient(135deg,#${t.color})">
+        ${t.emoji}
+        <span class="tour-badge">${t.badge}</span>
+      </div>
+      <div class="tour-full-body">
+        <h3>${t.name}</h3>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:8px">📍 ${t.dest} · 📅 ${t.nights} gecə</p>
+        <p class="desc">${t.desc}</p>
+        <div class="includes">
+          ${t.includes.map(i => `<span class="incl-tag">✓ ${i}</span>`).join('')}
+        </div>
+        <div class="tour-foot">
+          <div class="price-block">
+            <div class="from">Başlayan qiymət</div>
+            <div class="amount">$${t.price}</div>
+            <div class="per">nəfər başına</div>
+          </div>
+          <button class="btn-sm" onclick="bookTour('${t.name}', ${t.price})">Rezerv et</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setFilter(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = cat;
+  const filtered = cat === 'all' ? TOURS : TOURS.filter(t => t.category === cat);
+  allTourData = filtered;
+  renderToursGrid(filtered);
+}
+
+function sortTours(by) {
+  const sorted = [...allTourData];
+  if (by === 'price_asc') sorted.sort((a,b) => a.price - b.price);
+  else if (by === 'price_desc') sorted.sort((a,b) => b.price - a.price);
+  else if (by === 'duration') sorted.sort((a,b) => b.nights - a.nights);
+  else sorted.sort((a,b) => b.popular - a.popular);
+  renderToursGrid(sorted);
+}
+
+function filterTours() {
+  const q = document.getElementById('t-dest').value.toLowerCase();
+  if (!q) { renderToursGrid(TOURS); return; }
+  const filtered = TOURS.filter(t =>
+    t.name.toLowerCase().includes(q) ||
+    t.dest.toLowerCase().includes(q) ||
+    t.category.toLowerCase().includes(q)
+  );
+  renderToursGrid(filtered.length ? filtered : TOURS);
+}
+
+function bookTour(name, price) {
+  window.location.href = `contact.html?tour=${encodeURIComponent(name + ' - $' + price)}`;
+}
+
+renderToursGrid(TOURS);
+</script>
+</body>
+</html>
