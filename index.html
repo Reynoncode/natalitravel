@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natali Travel — Dünyaya Açılan Qapınız</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈</text></svg>">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-icon"></div>
+    <div class="logo-text">
+      <span>Natali</span>
+      <span>TRAVEL</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Ana Səhifə</a></li>
+    <li><a href="flights.html">Uçuşlar</a></li>
+    <li><a href="hotels.html">Otellər</a></li>
+    <li><a href="tours.html">Turlar</a></li>
+    <li><a href="services.html">Xidmətlər</a></li>
+    <li><a href="contact.html" class="nav-cta">Əlaqə</a></li>
+  </ul>
+
+  <button class="nav-hamburger" aria-label="Menyu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav">
+  <a href="index.html">Ana Səhifə</a>
+  <a href="flights.html">Uçuşlar</a>
+  <a href="hotels.html">Otellər</a>
+  <a href="tours.html">Turlar</a>
+  <a href="services.html">Xidmətlər</a>
+  <a href="contact.html">Əlaqə</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circles"></div>
+  <div class="hero-grid-pattern"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">✦ Bakı'nın Ən Etibarlı Səyahət Agentliyi</div>
+    <h1>Dünyaya Açılan <span>Qapınız</span></h1>
+    <p>Viza, bilet, otel, tur, sığorta — hər şey bir damın altında. Arzularınızdakı səyahəti birlikdə planlayaq.</p>
+
+    <!-- SEARCH BOX -->
+    <div class="search-box">
+      <div class="search-tabs">
+        <button class="search-tab active" data-tab="tab-flight">✈️ Uçuş</button>
+        <button class="search-tab" data-tab="tab-hotel">🏨 Otel</button>
+        <button class="search-tab" data-tab="tab-tour">🌍 Tur</button>
+      </div>
+
+      <!-- FLIGHT TAB -->
+      <div class="search-panel active" id="tab-flight">
+        <div class="search-row">
+          <div class="search-field">
+            <label>Haradan</label>
+            <input type="text" id="f-from" placeholder="Bakı (GYD)" value="Bakı">
+          </div>
+          <div class="search-field">
+            <label>Hara</label>
+            <input type="text" id="f-to" placeholder="İstanbul, Dubai...">
+          </div>
+          <div class="search-field">
+            <label>Uçuş tarixi</label>
+            <input type="date" id="f-date">
+          </div>
+          <div class="search-field">
+            <label>Sərnişin</label>
+            <select id="f-pax">
+              <option value="1">1 nəfər</option>
+              <option value="2">2 nəfər</option>
+              <option value="3">3 nəfər</option>
+              <option value="4">4 nəfər</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>&nbsp;</label>
+            <button class="search-btn" onclick="quickFlightSearch()">🔍 Axtar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOTEL TAB -->
+      <div class="search-panel" id="tab-hotel">
+        <div class="search-row">
+          <div class="search-field">
+            <label>Şəhər / Ölkə</label>
+            <input type="text" id="h-dest" placeholder="Istanbul, Paris, Dubai...">
+          </div>
+          <div class="search-field">
+            <label>Giriş tarixi</label>
+            <input type="date" id="h-cin">
+          </div>
+          <div class="search-field">
+            <label>Çıxış tarixi</label>
+            <input type="date" id="h-cout" data-default="checkout">
+          </div>
+          <div class="search-field">
+            <label>Qonaq</label>
+            <select id="h-guests">
+              <option value="1">1 nəfər</option>
+              <option value="2">2 nəfər</option>
+              <option value="3">3 nəfər</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>&nbsp;</label>
+            <button class="search-btn" onclick="quickHotelSearch()">🔍 Axtar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOUR TAB -->
+      <div class="search-panel" id="tab-tour">
+        <div class="search-row" style="grid-template-columns: 1fr 1fr 1fr 1fr 120px">
+          <div class="search-field">
+            <label>Dəstinasiya</label>
+            <input type="text" id="t-dest" placeholder="Antalya, İstanbul...">
+          </div>
+          <div class="search-field">
+            <label>Tarix</label>
+            <input type="date" id="t-date">
+          </div>
+          <div class="search-field">
+            <label>Müddət</label>
+            <select>
+              <option>3-5 gecə</option>
+              <option>7 gecə</option>
+              <option>10 gecə</option>
+              <option>14 gecə</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>Nəfər sayı</label>
+            <select>
+              <option>1 nəfər</option>
+              <option>2 nəfər</option>
+              <option>4 nəfər (ailə)</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>&nbsp;</label>
+            <button class="search-btn" onclick="window.location.href='tours.html'">🔍 Axtar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat"><h3><span data-count="15000" data-suffix="+">0</span></h3><p>Məmnun Müştəri</p></div>
+    <div class="stat"><h3><span data-count="80" data-suffix="+">0</span></h3><p>Ölkəyə Tur</p></div>
+    <div class="stat"><h3><span data-count="12" data-suffix=" il">0</span></h3><p>Təcrübə</p></div>
+    <div class="stat"><h3><span data-count="98" data-suffix="%">0</span></h3><p>Müştəri Məmnuniyyəti</p></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="section-inner">
+    <div class="text-center">
+      <p class="section-label">Xidmətlərimiz</p>
+      <h2 class="section-title">Hər <span>Ehtiyacınız</span> Üçün Buradayıq</h2>
+      <p class="section-sub mt-8">Bakıdan dünyaya uzanan xidmət şəbəkəmizlə səyahətinizi rahatlıqla planlayın.</p>
+    </div>
+
+    <div class="services-grid">
+      <a href="flights.html" class="service-card">
+        <div class="service-icon">✈️</div>
+        <h4>Aviabilet</h4>
+        <p>Dünya xətti üzrə 500+ aviaşirkət. Ən ucuz biletlər</p>
+      </a>
+      <a href="hotels.html" class="service-card">
+        <div class="service-icon">🏨</div>
+        <h4>Otel Rezervasiyası</h4>
+        <p>Dünya genelinde 300,000+ otel. Ən yaxşı qiymətlər</p>
+      </a>
+      <a href="tours.html" class="service-card">
+        <div class="service-icon">🌍</div>
+        <h4>Tur Paketləri</h4>
+        <p>Hamısı daxil paketlər. Bilet + otel + transfer</p>
+      </a>
+      <a href="services.html#visa" class="service-card">
+        <div class="service-icon">🛂</div>
+        <h4>Viza Xidməti</h4>
+        <p>Schengen, ABŞ, UK, Dubai və digər vizalar</p>
+      </a>
+      <a href="services.html#insurance" class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h4>Səyahət Sığortası</h4>
+        <p>Tibbi, iptal, əşya — tam qoruma paketləri</p>
+      </a>
+      <a href="services.html#transfer" class="service-card">
+        <div class="service-icon">🚐</div>
+        <h4>Transfer & VIP</h4>
+        <p>Hava limanı transfer, VIP karşılama xidmətləri</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED TOURS -->
+<section class="section" style="background: var(--light); padding-top: 60px; padding-bottom: 80px;">
+  <div class="section-inner">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div>
+        <p class="section-label">Populyar Turlar</p>
+        <h2 class="section-title">Seçilmiş <span>Dəstinasiyalar</span></h2>
+      </div>
+      <a href="tours.html" class="btn-outline">Hamısına bax →</a>
+    </div>
+
+    <div class="tours-grid">
+
+      <div class="tour-card">
+        <div class="tour-img" style="background: linear-gradient(135deg, #c0392b, #e74c3c);">
+          <div class="tour-img-placeholder">🕌</div>
+          <span class="tour-badge">Ən Çox Satılan</span>
+        </div>
+        <div class="tour-body">
+          <h3>İstanbul Turu</h3>
+          <div class="tour-meta">
+            <span>📅 7 gecə</span>
+            <span>✈️ Uçuş daxil</span>
+            <span>🍽️ Yarım pansion</span>
+          </div>
+          <div class="tour-footer">
+            <div class="tour-price">
+              <span>Başlayan qiymət</span>
+              <strong>$349</strong>
+            </div>
+            <a href="tours.html" class="btn-sm">İndi Al</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-img" style="background: linear-gradient(135deg, #e67e22, #f39c12);">
+          <div class="tour-img-placeholder">🏙️</div>
+          <span class="tour-badge">Sərfəli</span>
+        </div>
+        <div class="tour-body">
+          <h3>Dubai Turu</h3>
+          <div class="tour-meta">
+            <span>📅 5 gecə</span>
+            <span>✈️ Uçuş daxil</span>
+            <span>🏨 5★ Otel</span>
+          </div>
+          <div class="tour-footer">
+            <div class="tour-price">
+              <span>Başlayan qiymət</span>
+              <strong>$599</strong>
+            </div>
+            <a href="tours.html" class="btn-sm">İndi Al</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tour-card">
+        <div class="tour-img" style="background: linear-gradient(135deg, #1abc9c, #16a085);">
+          <div class="tour-img-placeholder">🏖️</div>
+          <span class="tour-badge">Yay Xüsusi</span>
+        </div>
+        <div class="tour-body">
+          <h3>Antalya Turu</h3>
+          <div class="tour-meta">
+            <span>📅 7 gecə</span>
+            <span>✈️ Uçuş daxil</span>
+            <span>🍽️ Hər şey daxil</span>
+          </div>
+          <div class="tour-footer">
+            <div class="tour-price">
+              <span>Başlayan qiymət</span>
+              <strong>$449</strong>
+            </div>
+            <a href="tours.html" class="btn-sm">İndi Al</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section why-us">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <p class="section-label">Niyə Natali Travel?</p>
+        <h2 class="section-title">Səyahətin <span>Hər Anı</span> Bizimlə</h2>
+        <p class="section-sub mt-8 mt-16">2012-ci ildən bəri Azərbaycanlı turistlərə xidmət göstərir, minlərlə uğurlu səyahətin arxasındayıq.</p>
+
+        <div class="why-list mt-24">
+          <div class="why-item">
+            <div class="why-icon">⚡</div>
+            <div>
+              <h4>Sürətli Xidmət</h4>
+              <p>Bilet rezervasiyası 5 dəqiqə ərzində. Viza müraciətləri üçün hüquqi dəstək.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">💰</div>
+            <div>
+              <h4>Ən Yaxşı Qiymət Zəmanəti</h4>
+              <p>Başqa yerdə ucuz tapdınız? Fərqi ödəyirik. Ən yaxşı qiymət bizdədir.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🛡️</div>
+            <div>
+              <h4>7/24 Dəstək</h4>
+              <p>Səyahət zamanı hər hansı problem? Komandamız 24 saat əlaqə saxlamağa hazırdır.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🏆</div>
+            <div>
+              <h4>Sertifikatlı Agent</h4>
+              <p>IATA sertifikatlı agentlik. ATAB üzvü. Tam etibar ilə səyahət edin.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-visual">
+        <p style="font-size:4rem;margin-bottom:8px">✈️</p>
+        <h2>12+ İl</h2>
+        <p>Azərbaycanda Etibarlı Səyahət Ortağınız</p>
+        <div class="why-features">
+          <div class="why-feat">IATA Sertifikatlı</div>
+          <div class="why-feat">ATAB Üzvü</div>
+          <div class="why-feat">80+ Ölkə</div>
+          <div class="why-feat">15K+ Müştəri</div>
+          <div class="why-feat">Rəsmi Vizaçı</div>
+          <div class="why-feat">24/7 Dəstək</div>
+        </div>
+        <div style="margin-top:28px">
+          <a href="contact.html" class="btn-primary" style="background:white;color:var(--primary)">Pulsuz Məsləhət Al →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="padding: 60px 5vw; background: linear-gradient(135deg, var(--accent) 0%, #e67e22 100%);">
+  <div style="max-width:700px; margin: 0 auto; text-align: center;">
+    <h2 style="color:white; font-size: 2rem; margin-bottom: 12px;">Pulsuz Məsləhət Üçün Zəng Edin</h2>
+    <p style="color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom: 28px;">Mütəxəssislərimiz sizin üçün ən uyğun səyahət paketini hazırlayır</p>
+    <div style="display:flex; gap:14px; justify-content: center; flex-wrap: wrap;">
+      <a href="tel:+994125557777" class="btn-primary" style="background:white;color:var(--accent)">📞 +994 12 555 77 77</a>
+      <a href="contact.html" class="btn-primary" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.5)">✉️ Yazın</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <div class="logo-text">
+          <span>Natali</span>
+          <span>TRAVEL</span>
+        </div>
+      </div>
+      <p>2012-ci ildən etibarən Azərbaycan turistlərinə dünyanı kəşf etməyə kömək edirik. Etibarlı, sürətli, sərfəli.</p>
+      <div class="footer-socials mt-16">
+        <div class="social-icon">f</div>
+        <div class="social-icon">in</div>
+        <div class="social-icon">ig</div>
+        <div class="social-icon">wa</div>
+      </div>
+    </div>
+
+    <div>
+      <h4>Xidmətlər</h4>
+      <ul class="footer-links">
+        <li><a href="flights.html">Aviabilet</a></li>
+        <li><a href="hotels.html">Otel Rezervasiyası</a></li>
+        <li><a href="tours.html">Tur Paketləri</a></li>
+        <li><a href="services.html#visa">Viza Xidməti</a></li>
+        <li><a href="services.html#insurance">Səyahət Sığortası</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Populyar Turlar</h4>
+      <ul class="footer-links">
+        <li><a href="tours.html">İstanbul Turu</a></li>
+        <li><a href="tours.html">Dubai Turu</a></li>
+        <li><a href="tours.html">Antalya Turu</a></li>
+        <li><a href="tours.html">Avropa Turları</a></li>
+        <li><a href="tours.html">Bal Ayı Turları</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Əlaqə</h4>
+      <div class="footer-contact">
+        <p>📍 Nizami küç. 42, Bakı</p>
+        <p>📞 +994 12 555 77 77</p>
+        <p>📱 +994 55 555 77 77</p>
+        <p>✉️ info@natalitravel.az</p>
+        <p>🕐 B.e–Cümə: 09:00–18:00</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 Natali Travel. Bütün hüquqlar qorunur.</p>
+    <p>IATA · ATAB · Lisenziyalı Turizm Agentliyi</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function quickFlightSearch() {
+  const from = document.getElementById('f-from').value || 'Bakı';
+  const to = document.getElementById('f-to').value;
+  const date = document.getElementById('f-date').value;
+  const pax = document.getElementById('f-pax').value;
+  if (!to) { alert('Hara getmək istədiyinizi daxil edin'); return; }
+  window.location.href = `flights.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}&pax=${pax}`;
+}
+
+function quickHotelSearch() {
+  const dest = document.getElementById('h-dest').value;
+  const cin = document.getElementById('h-cin').value;
+  const cout = document.getElementById('h-cout').value;
+  const guests = document.getElementById('h-guests').value;
+  if (!dest) { alert('Şəhər və ya ölkə daxil edin'); return; }
+  window.location.href = `hotels.html?dest=${encodeURIComponent(dest)}&cin=${cin}&cout=${cout}&guests=${guests}`;
+}
+</script>
+</body>
+</html>
