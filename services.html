@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xidmətlər — Natali Travel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .section-tab-nav {
+      display: flex; gap: 0; border-bottom: 2px solid rgba(43,189,197,0.12);
+      margin-bottom: 40px; flex-wrap: wrap;
+    }
+    .stab {
+      padding: 14px 28px; background: none; border: none;
+      font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+      color: var(--muted); cursor: pointer; transition: all .2s;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+    }
+    .stab.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .service-section { display: none; }
+    .service-section.active { display: block; }
+
+    .visa-country-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 16px; margin-top: 24px;
+    }
+    .visa-country-card {
+      background: white; border: 1.5px solid rgba(43,189,197,0.12);
+      border-radius: var(--radius); padding: 20px;
+      display: flex; gap: 14px; align-items: flex-start;
+      transition: all .2s; cursor: pointer;
+    }
+    .visa-country-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .visa-flag { font-size: 32px; }
+    .visa-country-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .visa-country-card p { font-size: 12px; color: var(--muted); }
+    .visa-status { display: inline-block; padding: 2px 8px; border-radius: 50px; font-size: 10px; font-weight: 700; margin-top: 5px; }
+    .status-easy { background: rgba(27,188,156,0.12); color: #1abc9c; }
+    .status-medium { background: rgba(245,160,42,0.12); color: var(--accent); }
+    .status-hard { background: rgba(231,76,60,0.1); color: #e74c3c; }
+
+    .price-calculator {
+      background: white; border-radius: var(--radius-lg);
+      padding: 32px; box-shadow: var(--shadow);
+      border: 1.5px solid rgba(43,189,197,0.1);
+      margin-top: 40px;
+    }
+    .calc-result {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: var(--radius); padding: 20px; color: white; text-align: center;
+      margin-top: 20px; display: none;
+    }
+    .calc-result h3 { font-size: 2rem; }
+    .calc-result p { opacity: .8; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-icon"></div>
+    <div class="logo-text"><span>Natali</span><span>TRAVEL</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Səhifə</a></li>
+    <li><a href="flights.html">Uçuşlar</a></li>
+    <li><a href="hotels.html">Otellər</a></li>
+    <li><a href="tours.html">Turlar</a></li>
+    <li><a href="services.html" class="active">Xidmətlər</a></li>
+    <li><a href="contact.html" class="nav-cta">Əlaqə</a></li>
+  </ul>
+  <button class="nav-hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-nav">
+  <a href="index.html">Ana Səhifə</a>
+  <a href="flights.html">Uçuşlar</a>
+  <a href="hotels.html">Otellər</a>
+  <a href="tours.html">Turlar</a>
+  <a href="services.html">Xidmətlər</a>
+  <a href="contact.html">Əlaqə</a>
+</div>
+
+<div class="page-hero">
+  <h1>🛎️ Xidmətlərimiz</h1>
+  <p>Viza, sığorta, bilet, transfer — səyahətinizin hər detalı bizdə</p>
+</div>
+
+<section class="section" id="visa">
+  <div class="section-inner">
+
+    <div class="section-tab-nav">
+      <button class="stab active" onclick="switchTab('visa', this)">🛂 Viza Xidmətləri</button>
+      <button class="stab" onclick="switchTab('insurance', this)">🛡️ Sığorta</button>
+      <button class="stab" onclick="switchTab('transfer', this)">🚐 Transfer & VIP</button>
+      <button class="stab" onclick="switchTab('tickets', this)">🎫 Bilet</button>
+    </div>
+
+    <!-- VISA SECTION -->
+    <div class="service-section active" id="sec-visa">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+        <div>
+          <p class="section-label">Viza Xidmətləri</p>
+          <h2 class="section-title">Viza <span>Problemsiz</span></h2>
+          <p class="section-sub mt-8">Schengen, ABŞ, Böyük Britaniya, Çin, Hindistan və 50+ ölkə üçün viza müraciəti xidməti.</p>
+
+          <div class="why-list mt-24">
+            <div class="why-item">
+              <div class="why-icon">📋</div>
+              <div><h4>Sənəd Hazırlığı</h4><p>Bütün lazımi sənədlərin siyahısını veririk, formalar doldurmaqda kömək edirik.</p></div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">📅</div>
+              <div><h4>Konsulluq Randevusu</h4><p>Konsulluq randevusu almaqda yardım edirik. Növbə problemi olmur.</p></div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">📊</div>
+              <div><h4>Yüksək Qəbul Faizi</h4><p>%95 uğurlu viza qəbulu. Rədd qərarı aldıqda yenidən müraciət üçün kömək.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">Populyar Ölkələr</h3>
+          <div class="visa-country-grid" style="grid-template-columns:1fr 1fr">
+            <div class="visa-country-card"><div class="visa-flag">🇪🇺</div><div><h4>Schengen</h4><p>26 Avropa ölkəsi</p><span class="visa-status status-medium">Orta</span></div></div>
+            <div class="visa-country-card"><div class="visa-flag">🇺🇸</div><div><h4>ABŞ (B1/B2)</h4><p>Turizm vizası</p><span class="visa-status status-hard">Mürəkkəb</span></div></div>
+            <div class="visa-country-card"><div class="visa-flag">🇬🇧</div><div><h4>Böyük Britaniya</h4><p>Standard Visitor</p><span class="visa-status status-medium">Orta</span></div></div>
+            <div class="visa-country-card"><div class="visa-flag">🇨🇳</div><div><h4>Çin</h4><p>L vizası</p><span class="visa-status status-medium">Orta</span></div></div>
+            <div class="visa-country-card"><div class="visa-flag">🇮🇳</div><div><h4>Hindistan</h4><p>E-visa mövcuddur</p><span class="visa-status status-easy">Asan</span></div></div>
+            <div class="visa-country-card"><div class="visa-flag">🇦🇪</div><div><h4>Dubai / BAƏ</h4><p>On arrival / online</p><span class="visa-status status-easy">Asan</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:48px">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:20px">Viza Xidməti Qiymətləri</h3>
+        <div style="overflow-x:auto">
+          <table class="visa-table">
+            <thead><tr>
+              <th>Ölkə / Zona</th>
+              <th>Viza növü</th>
+              <th>Hazırlama müddəti</th>
+              <th>Konsulluq rüsumu</th>
+              <th>Xidmət haqqı</th>
+              <th>Cəmi (orta)</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>🇪🇺 Schengen</td><td>C vizası (qısamüddətli)</td><td>10-15 iş günü</td><td>€80</td><td>$50</td><td>~$140</td></tr>
+              <tr><td>🇬🇧 Böyük Britaniya</td><td>Standard Visitor</td><td>15-20 iş günü</td><td>£115</td><td>$60</td><td>~$210</td></tr>
+              <tr><td>🇺🇸 ABŞ</td><td>B1/B2</td><td>30-60 iş günü</td><td>$185</td><td>$80</td><td>~$280</td></tr>
+              <tr><td>🇦🇪 Dubai/BAƏ</td><td>30 günlük tourist</td><td>3-5 iş günü</td><td>$100</td><td>$30</td><td>~$130</td></tr>
+              <tr><td>🇨🇳 Çin</td><td>L vizası</td><td>5-7 iş günü</td><td>$140</td><td>$50</td><td>~$190</td></tr>
+              <tr><td>🇮🇳 Hindistan</td><td>E-visa</td><td>3-5 iş günü</td><td>$25</td><td>$20</td><td>~$45</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:32px;text-align:center">
+        <a href="contact.html" class="btn-primary">Viza üçün Müraciət Et →</a>
+      </div>
+    </div>
+
+    <!-- INSURANCE SECTION -->
+    <div class="service-section" id="sec-insurance">
+      <p class="section-label">Səyahət Sığortası</p>
+      <h2 class="section-title">Sizi <span>Qoruyuruq</span></h2>
+      <p class="section-sub mt-8">Tibbi yardım, uçuş ləğvi, əşya itkisi — bütün risklərə qarşı sığorta.</p>
+
+      <div class="insurance-grid">
+        <div class="insurance-card">
+          <div style="font-size:40px">🩺</div>
+          <h3>Standart</h3>
+          <p style="color:var(--muted);font-size:13px">Gündəlik turizm üçün</p>
+          <div class="ins-price">$8 <span style="font-size:14px;color:var(--muted)">/gün</span></div>
+          <ul>
+            <li>Tibbi xərclər $30,000-a qədər</li>
+            <li>Xəstəxana daxil/çıxarılma</li>
+            <li>Repatriasiya</li>
+            <li>Yaxın ölkələr üçün uyğun</li>
+          </ul>
+          <button class="btn-sm" style="width:100%;padding:12px" onclick="orderInsurance('Standart')">Sifariş et</button>
+        </div>
+
+        <div class="insurance-card featured">
+          <div style="font-size:40px">🛡️</div>
+          <h3>Premium</h3>
+          <p style="color:var(--muted);font-size:13px">Geniş müdafiə</p>
+          <div class="ins-price">$15 <span style="font-size:14px;color:var(--muted)">/gün</span></div>
+          <ul>
+            <li>Tibbi xərclər $100,000-a qədər</li>
+            <li>Uçuş ləğvi kompensasiyası</li>
+            <li>Əşya itkisi / gecikməsi</li>
+            <li>24/7 yardım xətti</li>
+            <li>COVID-19 əhatəsi</li>
+          </ul>
+          <button class="btn-sm" style="width:100%;padding:12px;background:var(--primary)" onclick="orderInsurance('Premium')">Sifariş et</button>
+        </div>
+
+        <div class="insurance-card">
+          <div style="font-size:40px">🏆</div>
+          <h3>VIP</h3>
+          <p style="color:var(--muted);font-size:13px">Maksimal qoruma</p>
+          <div class="ins-price">$25 <span style="font-size:14px;color:var(--muted)">/gün</span></div>
+          <ul>
+            <li>Tibbi xərclər $250,000-a qədər</li>
+            <li>Tam ləğv mühafizəsi</li>
+            <li>Əşya itkisi tam ödəniş</li>
+            <li>Şəxsi mesaj xidməti</li>
+            <li>Ekstremal idman daxil</li>
+            <li>Hüquqi yardım</li>
+          </ul>
+          <button class="btn-sm" style="width:100%;padding:12px" onclick="orderInsurance('VIP')">Sifariş et</button>
+        </div>
+      </div>
+
+      <!-- PRICE CALCULATOR -->
+      <div class="price-calculator">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:20px">🧮 Sığorta Qiymət Hesablaması</h3>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Paket</label>
+            <select id="ins-plan" onchange="calcInsurance()">
+              <option value="8">Standart ($8/gün)</option>
+              <option value="15" selected>Premium ($15/gün)</option>
+              <option value="25">VIP ($25/gün)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Günlərin sayı</label>
+            <input type="number" id="ins-days" value="7" min="1" max="365" onchange="calcInsurance()">
+          </div>
+          <div class="form-group">
+            <label>Nəfər sayı</label>
+            <input type="number" id="ins-pax" value="1" min="1" max="10" onchange="calcInsurance()">
+          </div>
+          <div class="form-group">
+            <label>Yaş qrupu</label>
+            <select id="ins-age" onchange="calcInsurance()">
+              <option value="1">18–60 yaş (×1)</option>
+              <option value="1.2">60–70 yaş (×1.2)</option>
+              <option value="1.5">70+ yaş (×1.5)</option>
+              <option value="0.7">Uşaq 0–17 (×0.7)</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-result" id="ins-result">
+          <p>Ümumi sığorta məbləği</p>
+          <h3 id="ins-total">$0</h3>
+          <p id="ins-detail"></p>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn-primary" onclick="calcInsurance()">Hesabla</button>
+          <a href="contact.html" class="btn-outline">Sifariş ver</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSFER SECTION -->
+    <div class="service-section" id="sec-transfer">
+      <p class="section-label">Transfer & VIP Xidmətlər</p>
+      <h2 class="section-title">Rahat <span>Nəqliyyat</span></h2>
+      <p class="section-sub mt-8">Hava limanından otelin qapısına — rahatlıqla çatın.</p>
+
+      <div class="services-grid mt-24">
+        <div class="service-card"><div class="service-icon">🚐</div><h4>Standart Transfer</h4><p>Hava limanı karşılama, bagaj köməyi, otelə çatdırılma.</p><p style="margin-top:12px;font-weight:700;color:var(--primary)">$25-dən</p></div>
+        <div class="service-card"><div class="service-icon">🚗</div><h4>Business Transfer</h4><p>Premium avtomobil, şəxsi sürücü, istənilən saatda xidmət.</p><p style="margin-top:12px;font-weight:700;color:var(--primary)">$50-dən</p></div>
+        <div class="service-card"><div class="service-icon">👑</div><h4>VIP Qarşılama</h4><p>Adlı lövhə, fast-track, VIP salon, limuzin xidməti.</p><p style="margin-top:12px;font-weight:700;color:var(--primary)">$120-dən</p></div>
+        <div class="service-card"><div class="service-icon">🚌</div><h4>Qrup Transferi</h4><p>10+ nəfər üçün avtobus, bələdçi dəstəyi.</p><p style="margin-top:12px;font-weight:700;color:var(--primary)">$180-dən</p></div>
+      </div>
+      <div style="margin-top:32px;text-align:center">
+        <a href="contact.html" class="btn-primary">Transfer Sifariş Et →</a>
+      </div>
+    </div>
+
+    <!-- TICKETS SECTION -->
+    <div class="service-section" id="sec-tickets">
+      <p class="section-label">Bilet Xidmətləri</p>
+      <h2 class="section-title">Bilet <span>Bütün Kanallardan</span></h2>
+      <p class="section-sub mt-8">Aviabiatlər, qatarlar, kruiz biletləri, konsert və tədbirlər üçün bilet.</p>
+
+      <div class="services-grid mt-24">
+        <div class="service-card"><div class="service-icon">✈️</div><h4>Aviabilet</h4><p>AZAL, Turkish, Emirates, Qatar, flydubai və 500+ aviaşirkət. Ən ucuz tariflar.</p></div>
+        <div class="service-card"><div class="service-icon">🚢</div><h4>Kruiz Biletləri</h4><p>MSC, Costa, Royal Caribbean — Aralıq dənizi, Karib, Skandinaviya turları.</p></div>
+        <div class="service-card"><div class="service-icon">🚂</div><h4>Qatar / Bus</h4><p>Avropa qatarları, InterRail paket, Eurolines avtobus biletləri.</p></div>
+        <div class="service-card"><div class="service-icon">🎫</div><h4>Attraksiyalar</h4><p>Burj Khalifa, Disneyland, muzey biletləri, şəhər turları — növbəsiz giriş.</p></div>
+      </div>
+
+      <div style="margin-top:32px;text-align:center">
+        <a href="flights.html" class="btn-primary">Aviabilet Axtar →</a>
+        &nbsp;&nbsp;
+        <a href="contact.html" class="btn-outline">Digər Biletlər</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-icon"></div><div class="logo-text"><span>Natali</span><span>TRAVEL</span></div></div>
+      <p>2012-ci ildən Azərbaycan turistlərinə xidmət edirik.</p>
+    </div>
+    <div><h4>Xidmətlər</h4><ul class="footer-links">
+      <li><a href="flights.html">Aviabilet</a></li>
+      <li><a href="hotels.html">Otel</a></li>
+      <li><a href="tours.html">Turlar</a></li>
+      <li><a href="services.html">Viza & Sığorta</a></li>
+    </ul></div>
+    <div><h4>Şirkət</h4><ul class="footer-links">
+      <li><a href="contact.html">Haqqımızda</a></li>
+      <li><a href="contact.html">Əlaqə</a></li>
+    </ul></div>
+    <div><h4>Əlaqə</h4><div class="footer-contact">
+      <p>📞 +994 12 555 77 77</p>
+      <p>✉️ info@natalitravel.az</p>
+    </div></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Natali Travel. Bütün hüquqlar qorunur.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function switchTab(tab, btn) {
+  document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.service-section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sec-' + tab).classList.add('active');
+}
+
+function calcInsurance() {
+  const rate = +document.getElementById('ins-plan').value;
+  const days = +document.getElementById('ins-days').value || 1;
+  const pax = +document.getElementById('ins-pax').value || 1;
+  const age = +document.getElementById('ins-age').value;
+  const total = Math.round(rate * days * pax * age);
+  const res = document.getElementById('ins-result');
+  res.style.display = 'block';
+  document.getElementById('ins-total').textContent = `$${total}`;
+  document.getElementById('ins-detail').textContent = `$${rate}/gün × ${days} gün × ${pax} nəfər = $${total}`;
+}
+
+function orderInsurance(plan) {
+  window.location.href = `contact.html?service=Sığorta - ${plan}`;
+}
+
+// URL hash
+if (location.hash === '#insurance') {
+  document.querySelectorAll('.stab')[1].click();
+}
+
+// Pre-calculate
+calcInsurance();
+</script>
+</body>
+</html>
