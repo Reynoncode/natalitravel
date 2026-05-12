@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uçuş Axtar — Natali Travel</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- === TRAVELPAYOUTS SCRIPT === -->
+  <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
+    (function () {
+        var script = document.createElement("script");
+        script.async = 1;
+        script.src = 'https://emrldco.com/NTI4MzAy.js?t=528302';
+        document.head.appendChild(script);
+    })();
+  </script>
+  <!-- ========================== -->
 </head>
 <body>
-
 <nav class="navbar" id="navbar">
   <a href="index.html" class="logo">
     <div class="logo-icon"></div>
@@ -42,7 +52,6 @@
 <!-- SEARCH FORM -->
 <div class="search-form-section">
   <div class="search-form-inner">
-    <!-- Trip type -->
     <div style="display:flex;gap:12px;margin-bottom:16px">
       <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:14px;font-weight:500">
         <input type="radio" name="trip" value="one" checked> Birdəfəlik
@@ -51,11 +60,10 @@
         <input type="radio" name="trip" value="round"> Gedib-gəlmə
       </label>
     </div>
-
     <div class="form-row" style="grid-template-columns: 1fr 1fr 160px 160px 120px 120px">
       <div class="search-field">
         <label>Haradan</label>
-        <input type="text" id="f-from" placeholder="Şəhər və ya hava limanı">
+        <input type="text" id="f-from" placeholder="Şəhər və ya hava limanı" value="GYD">
       </div>
       <div class="search-field">
         <label>Hara</label>
@@ -67,13 +75,13 @@
       </div>
       <div class="search-field" id="return-date-field" style="display:none">
         <label>Gəliş tarixi</label>
-        <input type="date" id="f-return" data-default="checkout">
+        <input type="date" id="f-return">
       </div>
       <div class="search-field">
         <label>Sərnişin</label>
         <select id="f-pax">
           <option value="1">1 nəfər</option>
-          <option value="2">2 nəfər</option>
+          <option value="2" selected>2 nəfər</option>
           <option value="3">3 nəfər</option>
           <option value="4">4 nəfər</option>
         </select>
@@ -83,7 +91,6 @@
         <select id="f-class">
           <option>İqtisadi</option>
           <option>Biznes</option>
-          <option>Premium</option>
         </select>
       </div>
       <div class="search-field">
@@ -98,14 +105,12 @@
 <div style="padding: 20px 5vw; background: white; border-bottom: 1px solid rgba(43,189,197,0.1);">
   <div style="max-width:1100px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
     <span style="font-size:12px;color:var(--muted);font-weight:600">Populyar:</span>
-    <button class="filter-btn" onclick="quickSearch('İstanbul')">🇹🇷 İstanbul</button>
-    <button class="filter-btn" onclick="quickSearch('Dubai')">🇦🇪 Dubai</button>
-    <button class="filter-btn" onclick="quickSearch('Moskva')">🇷🇺 Moskva</button>
-    <button class="filter-btn" onclick="quickSearch('London')">🇬🇧 London</button>
-    <button class="filter-btn" onclick="quickSearch('Paris')">🇫🇷 Paris</button>
-    <button class="filter-btn" onclick="quickSearch('Antalya')">🏖️ Antalya</button>
-    <button class="filter-btn" onclick="quickSearch('Frankfurt')">🇩🇪 Frankfurt</button>
-    <button class="filter-btn" onclick="quickSearch('Doha')">🇶🇦 Doha</button>
+    <button class="filter-btn" onclick="quickSearch('IST')">🇹🇷 İstanbul</button>
+    <button class="filter-btn" onclick="quickSearch('DXB')">🇦🇪 Dubai</button>
+    <button class="filter-btn" onclick="quickSearch('SVO')">🇷🇺 Moskva</button>
+    <button class="filter-btn" onclick="quickSearch('LHR')">🇬🇧 London</button>
+    <button class="filter-btn" onclick="quickSearch('CDG')">🇫🇷 Paris</button>
+    <button class="filter-btn" onclick="quickSearch('AYT')">🏖️ Antalya</button>
   </div>
 </div>
 
@@ -150,103 +155,144 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="logo"><div class="logo-icon"></div><div class="logo-text"><span>Natali</span><span>TRAVEL</span></div></div>
-      <p>2012-ci ildən Azərbaycan turistlərinə xidmət edirik.</p>
-    </div>
-    <div><h4>Xidmətlər</h4><ul class="footer-links">
-      <li><a href="flights.html">Aviabilet</a></li>
-      <li><a href="hotels.html">Otel</a></li>
-      <li><a href="tours.html">Turlar</a></li>
-      <li><a href="services.html">Viza & Sığorta</a></li>
-    </ul></div>
-    <div><h4>Şirkət</h4><ul class="footer-links">
-      <li><a href="contact.html">Haqqımızda</a></li>
-      <li><a href="contact.html">Əlaqə</a></li>
-    </ul></div>
-    <div><h4>Əlaqə</h4><div class="footer-contact">
-      <p>📞 +994 12 555 77 77</p>
-      <p>✉️ info@natalitravel.az</p>
-    </div></div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2024 Natali Travel. Bütün hüquqlar qorunur.</p>
-    <p>IATA · ATAB · Lisenziyalı</p>
-  </div>
-</footer>
+<footer class="footer"> ... (footer kodunuzu buraya əlavə edin) ... </footer>
 
-<script src="js/main.js"></script>
 <script>
+// ================== AVIASALES API ==================
+const API_TOKEN = "BURAYA_ÖZ_TOKENİNİZİ_YAZIN";   // ← Mütləq dəyişdirin!
+
 let allFlights = [];
 
-function quickSearch(dest) {
-  document.getElementById('f-from').value = 'Bakı';
-  document.getElementById('f-to').value = dest;
-  searchFlights();
+async function searchFlights() {
+    const from = document.getElementById('f-from').value.trim() || "GYD";
+    const to = document.getElementById('f-to').value.trim();
+
+    if (!to) {
+        alert('Hara getmək istədiyinizi daxil edin');
+        return;
+    }
+
+    document.getElementById('initial-state').style.display = 'none';
+    document.getElementById('results-loading').style.display = 'block';
+    document.getElementById('results-header').style.display = 'none';
+    document.getElementById('flights-results').innerHTML = '';
+
+    try {
+        let date = document.getElementById('f-date').value;
+        if (date) date = date.substring(0, 7); // YYYY-MM formatı
+
+        const url = `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin=${from}&destination=${to}&departure_at=${date || '2026-06'}&currency=AZN&limit=50&token=${API_TOKEN}`;
+
+        const response = await fetch(url);
+        const result = await response.json();
+
+        if (result.data && result.data.length > 0) {
+            allFlights = result.data.map(item => ({
+                price: Math.round(item.price),
+                airline: item.airline || "Aviaşirkət",
+                dep: item.departure_at ? item.departure_at.substring(11, 16) : "--:--",
+                arr: item.arrival_at ? item.arrival_at.substring(11, 16) : "--:--",
+                duration: item.duration || 180,
+                stops: item.transfers || 0,
+                fromCode: item.origin,
+                toCode: item.destination,
+                link: item.link || "#"
+            }));
+
+            document.getElementById('results-loading').style.display = 'none';
+            document.getElementById('results-header').style.display = 'block';
+            document.getElementById('results-title').textContent = `${from} → ${to}`;
+            document.getElementById('results-count').textContent = `${allFlights.length} uçuş tapıldı`;
+
+            renderFlights(allFlights);
+        } else {
+            noFlightsFound();
+        }
+    } catch (error) {
+        console.error(error);
+        document.getElementById('results-loading').style.display = 'none';
+        document.getElementById('flights-results').innerHTML = `
+            <div class="empty-state">
+                <h3>Bağlantı xətası</h3>
+                <p>API tokeninizi yoxlayın və ya internet bağlantınızı yoxlayın.</p>
+            </div>`;
+    }
 }
 
-function searchFlights() {
-  const from = document.getElementById('f-from').value.trim();
-  const to = document.getElementById('f-to').value.trim();
-  if (!to) { alert('Hara getmək istədiyinizi daxil edin'); return; }
-
-  document.getElementById('initial-state').style.display = 'none';
-  document.getElementById('results-loading').style.display = 'block';
-  document.getElementById('results-header').style.display = 'none';
-  document.getElementById('flights-results').innerHTML = '';
-
-  setTimeout(() => {
-    const pax = +document.getElementById('f-pax').value;
-    allFlights = generateFlights(from || 'Bakı', to, document.getElementById('f-date').value, pax);
-
+function noFlightsFound() {
     document.getElementById('results-loading').style.display = 'none';
-    document.getElementById('results-header').style.display = 'block';
-    document.getElementById('results-title').textContent = `${from || 'Bakı'} → ${to}`;
-    document.getElementById('results-count').textContent = `${allFlights.length} uçuş tapıldı`;
+    document.getElementById('flights-results').innerHTML = `
+        <div class="empty-state">
+            <div class="icon">😕</div>
+            <h3>Uçuş tapılmadı</h3>
+            <p>Bu istiqamət və tarixdə hazırda məlumat yoxdur.</p>
+        </div>`;
+}
 
-    renderFlights(allFlights, 'flights-results');
-  }, 1200);
+function renderFlights(flights) {
+    const container = document.getElementById('flights-results');
+    container.innerHTML = '';
+
+    flights.forEach(flight => {
+        const card = document.createElement('div');
+        card.className = 'flight-card';
+        card.innerHTML = `
+            <div class="flight-main">
+                <div class="flight-time">
+                    <strong>${flight.dep}</strong> — <strong>${flight.arr}</strong>
+                </div>
+                <div class="flight-route">
+                    <span>${flight.fromCode} → ${flight.toCode}</span>
+                    <small>${flight.duration} dəq • ${flight.stops === 0 ? 'Birbaşa' : flight.stops + ' dayanacaq'}</small>
+                </div>
+                <div class="flight-airline">${flight.airline}</div>
+            </div>
+            <div class="flight-price">
+                <strong>${flight.price} AZN</strong>
+                <a href="${flight.link}" target="_blank" class="book-btn">Bilet al</a>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// Digər funksiyalar
+function quickSearch(dest) {
+    document.getElementById('f-from').value = 'GYD';
+    document.getElementById('f-to').value = dest;
+    searchFlights();
 }
 
 function filterFlights(type, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  let filtered = [...allFlights];
-  if (type === 'direct') filtered = allFlights.filter(f => f.stops === 0);
-  if (type === 'stop') filtered = allFlights.filter(f => f.stops > 0);
-  renderFlights(filtered, 'flights-results');
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    let filtered = allFlights;
+    if (type === 'direct') filtered = allFlights.filter(f => f.stops === 0);
+    if (type === 'stop') filtered = allFlights.filter(f => f.stops > 0);
+
+    renderFlights(filtered);
 }
 
 function sortFlights(by) {
-  const sorted = [...allFlights].sort((a,b) => {
-    if (by === 'price') return a.price - b.price;
-    if (by === 'duration') return a.duration - b.duration;
-    if (by === 'dep') return a.dep.localeCompare(b.dep);
-    return 0;
-  });
-  renderFlights(sorted, 'flights-results');
+    const sorted = [...allFlights].sort((a, b) => {
+        if (by === 'price') return a.price - b.price;
+        if (by === 'duration') return a.duration - b.duration;
+        if (by === 'dep') return a.dep.localeCompare(b.dep);
+        return 0;
+    });
+    renderFlights(sorted);
 }
 
 // Round trip toggle
 document.querySelectorAll('input[name="trip"]').forEach(r => {
-  r.addEventListener('change', () => {
-    document.getElementById('return-date-field').style.display = r.value === 'round' ? 'block' : 'none';
-  });
+    r.addEventListener('change', () => {
+        document.getElementById('return-date-field').style.display = r.value === 'round' ? 'block' : 'none';
+    });
 });
 
-// URL params
-const params = new URLSearchParams(location.search);
-if (params.get('from')) document.getElementById('f-from').value = params.get('from');
-if (params.get('to')) document.getElementById('f-to').value = params.get('to');
-if (params.get('date')) document.getElementById('f-date').value = params.get('date');
-if (params.get('pax')) document.getElementById('f-pax').value = params.get('pax');
-
-if (params.get('to')) {
-  document.addEventListener('DOMContentLoaded', () => setTimeout(searchFlights, 300));
-}
+// Default tarix qoy
+document.getElementById('f-date').valueAsDate = new Date(Date.now() + 86400000 * 7); // 7 gün sonra
 </script>
 </body>
 </html>
